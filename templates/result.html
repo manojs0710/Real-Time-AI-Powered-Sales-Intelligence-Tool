@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Result</title>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            margin: 15px 0;
+            line-height: 1.5;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Analysis Result</h1>
+        <p><strong>Your Input:</strong> {{ user_input }}</p>
+        <p><strong>Sentiment:</strong> {{ sentiment }} (Score: {{ sentiment_score }})</p>
+        <p><strong>Response:</strong> {{ response }}</p>
+        <a href="/">Back to Home</a>
+    </div>
+</body>
+</html>

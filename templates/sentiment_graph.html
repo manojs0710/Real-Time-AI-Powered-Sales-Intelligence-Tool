@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Graph</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sentiment Analysis Graph</h1>
+        <canvas id="sentimentChart"></canvas>
+    </div>
+    <script>
+        fetch('/sentiment_data')
+            .then(response => response.json())
+            .then(data => {
+                const ctx = document.getElementById('sentimentChart').getContext('2d');
+                const sentimentChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Positive', 'Negative', 'Neutral'],
+                        datasets: [{
+                            label: 'Average Sentiment Score',
+                            data: [data.positive, data.negative, data.neutral],
+                            backgroundColor: [
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                            ],
+                            borderColor: [
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(255, 206, 86, 1)',
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+</body>
+</html>
